@@ -1,0 +1,57 @@
+# ---- Dependências ----
+node_modules/
+
+# ---- Dados do escritório ----
+# Aqui dentro moram a sua chave de acesso (dados/chave) e o banco com as suas
+# ordens de verdade. Nada desta pasta pode ir para repositório nenhum.
+dados/
+
+# Banco SQLite que caia fora de dados/ (ex.: ESCRITORIO_DADOS apontando para cá).
+*.db
+*.db-shm
+*.db-wal
+*.db.antes-da-vida
+*.sqlite
+*.sqlite3
+
+# ---- Segredos ----
+.env
+.env.*
+!.env.exemplo
+
+# ---- Build do front ----
+web/dist/
+dist/
+
+# ---- Logs, travas e PIDs ----
+*.log
+*.trava
+*.pid
+
+# ---- Oficina dos agentes ----
+# O que eles programam por vontade própria é trabalho deles, não código do projeto.
+# Só o LEIA-ME fica, para a pasta existir num clone novo.
+servidor/agentes-projeto/*
+!servidor/agentes-projeto/LEIA-ME.md
+
+# ---- Maquete do KalfeHub ----
+# artefatos/produtos tem uma amostra REAL do banco de produção: SKU, marca,
+# preço e CUSTO de 39 produtos, mais os números de volume do catálogo, e os
+# prints mostram a coluna de custo aberta. Margem não vai para o git.
+artefatos/
+
+# ---- Permissões locais desta máquina ----
+.claude/settings.local.json
+
+# ---- Caches de ferramenta ----
+.vite/
+.cache/
+coverage/
+*.tsbuildinfo
+.eslintcache
+
+# ---- Lixo de sistema e de editor ----
+.DS_Store
+Thumbs.db
+*.swp
+*~
