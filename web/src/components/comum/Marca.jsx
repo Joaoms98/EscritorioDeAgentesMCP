@@ -1,0 +1,12 @@
+// Marca do escritório: o cubo isométrico do ícone do app, em preto sobre branco. Retorna o <svg>.
+export default function Marca({ className = 'w-7 h-7' }) {
+  return (
+    <svg viewBox="0 0 64 64" className={`shrink-0 ${className}`} aria-hidden="true">
+      <rect width="64" height="64" rx="14" fill="#fafafa" />
+      <polygon points="32,10 54,22 32,34 10,22" fill="#404040" />
+      <polygon points="10,22 32,34 32,54 10,42" fill="#1a1a1a" />
+      <polygon points="54,22 32,34 32,54 54,42" fill="#0a0a0a" />
+      <polygon points="24,25 32,29.5 32,41 24,36.5" fill="#fafafa" />
+    </svg>
+  )
+}

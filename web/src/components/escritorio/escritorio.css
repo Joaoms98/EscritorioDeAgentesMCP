@@ -1,0 +1,127 @@
+@keyframes esc-flutuar {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -5px); }
+}
+
+@keyframes esc-halo {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+@keyframes esc-pontos {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
+@keyframes esc-digitar {
+  50% { transform: translateY(-1.2px); }
+}
+
+@keyframes esc-tela {
+  0%, 100% { opacity: 0.35; }
+  30% { opacity: 1; }
+}
+
+@keyframes esc-luz {
+  50% { opacity: 0.3; }
+}
+
+/* TV e fliperama: herói pulando, inimigo de ronda, moeda piscando, reflexo da água e o brilho da tela no chão. */
+@keyframes esc-pulo {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-1.8px); }
+}
+
+@keyframes esc-ronda {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-2.4px); }
+}
+
+@keyframes esc-moeda {
+  50% { opacity: 0.2; }
+}
+
+@keyframes esc-brilho {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes esc-cintilar {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Quem senta aparece aos poucos, escorregando de onde parou em pé até o assento; quem levanta faz o caminho inverso.
+   --esc-dx/--esc-dy = de onde a pessoa estava em pé até o assento, em unidades do desenho. */
+@keyframes esc-sentar {
+  from { opacity: 0; transform: translate(var(--esc-dx, 0px), var(--esc-dy, 0px)); }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes esc-levantar {
+  from { opacity: 1; transform: translate(0, 0); }
+  to { opacity: 0; transform: translate(var(--esc-dx, 0px), var(--esc-dy, 0px)); }
+}
+
+.esc-sentar { animation: esc-sentar 0.24s ease-out both; }
+.esc-levantar { animation: esc-levantar 0.24s ease-in both; }
+
+/* O crachá de quem trocou de sala desliza até o lugar novo. */
+.esc-deslizar {
+  transition-property: left, top, transform, background-color, border-color, color;
+  transition-duration: 0.55s, 0.55s, 0.55s, 0.15s, 0.15s, 0.15s;
+  transition-timing-function: cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.esc-flutuar { animation: esc-flutuar 1.6s ease-in-out infinite; }
+.esc-halo { animation: esc-halo 1.6s ease-out infinite; }
+
+.esc-pontos > span {
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: esc-pontos 1s ease-in-out infinite;
+}
+
+.esc-pontos > span:nth-child(2) { animation-delay: 0.15s; }
+.esc-pontos > span:nth-child(3) { animation-delay: 0.3s; }
+
+/* Sem movimento: o "!" fica parado e centralizado (o -translate-x-1/2 continua valendo), o halo vira um anel fixo,
+   ninguém anda (a cena já troca de lugar direto) e o crachá pula direto para o lugar novo. */
+@media (prefers-reduced-motion: reduce) {
+  .esc-flutuar,
+  .esc-halo,
+  .esc-pontos > span,
+  .esc-desenho polygon,
+  .esc-desenho g {
+    animation: none !important;
+  }
+
+  .esc-deslizar {
+    transition: none !important;
+  }
+
+  .esc-levantar {
+    visibility: hidden;
+  }
+
+  .esc-halo {
+    transform: scale(1.35);
+    opacity: 0.55;
+  }
+}
+
+/* A fala aparece com um pulinho e some sozinha. */
+@keyframes esc-fala {
+  0% { opacity: 0; transform: translate(-50%, 6px) scale(0.92); }
+  12% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  88% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -4px) scale(0.98); }
+}
+
+.esc-fala { animation: esc-fala 4.5s ease-in-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .esc-fala { animation: esc-fala 4.5s steps(1, end) both; }
+}

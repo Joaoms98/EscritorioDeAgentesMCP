@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Os mesmos valores dos tokens do tailwind.config.js (fundo, superficie, linha). */
+  --fundo: #0a0a0a;
+  --superficie: #111111;
+  --linha: #1f1f1f;
+  --linha-forte: #2c2c2c;
+  --fonte-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+
+/* O body não rola; o <main> de cada página é o contêiner de rolagem. */
+html,
+body,
+#root {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+#root > * {
+  height: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--fundo);
+  color: #ededed;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--fundo);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c2c2c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+.scrollbar-discreet {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollbar-discreet:hover {
+  scrollbar-color: rgba(115, 115, 115, 0.45) transparent;
+}
+
+.scrollbar-discreet::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-discreet::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-discreet::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.scrollbar-discreet:hover::-webkit-scrollbar-thumb {
+  background: rgba(115, 115, 115, 0.45);
+}
+
+.scrollbar-discreet::-webkit-scrollbar-thumb:hover {
+  background: rgba(115, 115, 115, 0.75);
+}
+
+.pb-seguro {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.pt-seguro {
+  padding-top: env(safe-area-inset-top);
+}
+
+@keyframes ctrl-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ctrl-modal-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ctrl-sheet-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ctrl-gaveta-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes ctrl-pulso {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.ctrl-overlay-in { animation: ctrl-overlay-in 0.15s ease-out; }
+.ctrl-modal-in { animation: ctrl-modal-in 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
+.ctrl-sheet-in { animation: ctrl-sheet-in 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.ctrl-gaveta-in { animation: ctrl-gaveta-in 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.ctrl-pulso { animation: ctrl-pulso 1.4s ease-in-out infinite; }
+.ctrl-press:active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ctrl-overlay-in,
+  .ctrl-modal-in,
+  .ctrl-sheet-in,
+  .ctrl-gaveta-in,
+  .ctrl-pulso {
+    animation: none;
+  }
+
+  .ctrl-press:active {
+    transform: none;
+  }
+}

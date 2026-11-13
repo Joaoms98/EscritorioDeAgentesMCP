@@ -1,0 +1,22 @@
+{
+  "name": "escritorio-de-agentes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Escritório de agentes: acompanhe e dê ordens aos seus agentes do Claude Code pelo navegador, no computador ou no celular.",
+  "workspaces": [
+    "servidor",
+    "web"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "npm run build -w web && npm run start -w servidor",
+    "simulado": "npm run build -w web && ESCRITORIO_SIMULADO=1 npm run start -w servidor",
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build -w web",
+    "test": "npm test -w servidor && npm test -w web",
+    "typecheck": "npm run typecheck -w servidor"
+  }
+}
